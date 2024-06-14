@@ -20,22 +20,59 @@ category System {
 
   asset Host {
 
+    # notPresent [Disabled]
+      -> connect,
+         fileSystemAccess
+
+    | connect
+      -> fileSystemAccess
+
+    | authenticate
+      -> fileSystemAccess,
+         networks.access
+
+    & fileSystemAccess
+      -> dataOnHost.read,
+         dataOnHost.modify
+
   }
 
   asset Data {
+
+    # notPresent [Disabled]
+      -> read,
+         modify
+
+    | read
+
+    | modify
 
   }
 
   asset Network {
 
+    | access
+      -> hosts.connect
+
   }
 
   asset User {
+
+    # notPresent [Disabled]
+      -> compromise
+
+    | compromise
+      -> hostsWithUser.authenticate
+
+    | phishing
+      -> compromise
 
   }
 
 }
 
 associations {
-
+  Network [networks] * <-- NetworkHostAccess --> * [hosts] Host
+  User [usersOnHost] * <-- HostUsers --> * [hostsWithUser] Host
+  Data [dataOnHost] * <-- HostData --> 0..1 [hostWithData] Host
 }
