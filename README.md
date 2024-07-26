@@ -15,4 +15,3 @@ TODO: Link to docs on how to do that.
 # trainingLang
 The goal of trainingLang is to be simple but still feature several types of assets and associations.
 We want to keep number of attack steps low to result in smaller attack graphs.
-exampleLang is also a simple MAL language, but too simple for any meaningful training.
