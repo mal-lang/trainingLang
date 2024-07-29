@@ -52,7 +52,8 @@ category Basic {
   asset Network {
 
     | access
-      -> hosts.connect
+      -> hosts.connect,
+         networks.access
 
   }
 
@@ -72,6 +73,7 @@ category Basic {
 }
 
 associations {
+  Network [network] 0..1 <-- NetworkToNetworkAccess --> * [networks] Network
   Network [networks] * <-- NetworkHostAccess --> * [hosts] Host
   User [users] * <-- HostUsers --> * [hosts] Host
   Data [data] * <-- HostData --> 0..1 [host] Host
