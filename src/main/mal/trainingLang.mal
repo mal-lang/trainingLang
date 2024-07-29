@@ -15,25 +15,25 @@
 #id: "org.mal-lang.trainingLang"
 #version: "1.0.0"
 
-category System {
+category Basic {
 
 
   asset Host {
 
     # notPresent [Disabled]
       -> connect,
-         fileSystemAccess
+         access
 
     | connect
-      -> fileSystemAccess
+      -> access
 
     | authenticate
-      -> fileSystemAccess,
+      -> access,
          networks.access
 
-    & fileSystemAccess
-      -> dataOnHost.read,
-         dataOnHost.modify
+    & access
+      -> data.read,
+         data.modify
 
   }
 
@@ -62,7 +62,7 @@ category System {
       -> compromise
 
     | compromise
-      -> hostsWithUser.authenticate
+      -> hosts.authenticate
 
     | phishing
       -> compromise
@@ -73,6 +73,6 @@ category System {
 
 associations {
   Network [networks] * <-- NetworkHostAccess --> * [hosts] Host
-  User [usersOnHost] * <-- HostUsers --> * [hostsWithUser] Host
-  Data [dataOnHost] * <-- HostData --> 0..1 [hostWithData] Host
+  User [users] * <-- HostUsers --> * [hosts] Host
+  Data [data] * <-- HostData --> 0..1 [host] Host
 }
