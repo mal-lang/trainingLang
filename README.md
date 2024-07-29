@@ -16,3 +16,43 @@ TODO: Link to docs on how to do that.
 The goal of trainingLang is to be simple but still feature several types of assets and associations.
 We want to keep number of attack steps low to result in smaller attack graphs.
 exampleLang is also a simple MAL language, but too simple for any meaningful training.
+
+# Assets
+
+## Host
+
+Represents a host in a network and can have users and data connected to it.
+
+### Associations 
+
+Host is part of three associations:
+- **NetworkHostAccess**: Network (networks) -> Host (hosts)
+- **HostUsers**: User (users) -> Host (hosts)
+- **HostData**: Host (hosts) -> Data (data)
+
+Note: List above on format `<Asset type> (<field name>) -> <Asset type> (<field name>)`
+
+## Data
+
+Represents data that can be on a host,
+
+Host is part of one association:
+- **HostData**: Host (hosts) -> Data (data)
+
+
+## Network
+
+Represents a network that hosts and networks can have access to.
+
+Network is part of two associations:
+- **NetworkHostAccess**: Network (networks) -> Host (hosts)
+- **NetworkToNetworkAccess**:  Network (network) -> Network (networks)
+
+
+## User
+
+Represents a user that has access to hosts.
+
+Host is part of one association:
+- **HostUsers**: User (users) -> Host (hosts)
+
