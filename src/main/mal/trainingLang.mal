@@ -24,12 +24,12 @@ category Basic {
       -> connect,
          access
 
-    | connect
-      -> access
-
     | authenticate
       -> access,
          networks.access
+
+    & connect
+      -> access
 
     & access
       -> data.read,
@@ -43,9 +43,9 @@ category Basic {
       -> read,
          modify
 
-    | read
+    & read
 
-    | modify
+    & modify
 
   }
 
@@ -62,7 +62,7 @@ category Basic {
     # notPresent [Disabled]
       -> compromise
 
-    | compromise
+    & compromise
       -> hosts.authenticate
 
     | phishing
