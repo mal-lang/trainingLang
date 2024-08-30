@@ -25,15 +25,15 @@ category Basic {
          access
 
     | authenticate
-      -> access,
-         networks.access
+      -> access
 
     & connect
       -> access
 
     & access
       -> data.read,
-         data.modify
+         data.modify,
+         networks.access
 
   }
 
@@ -53,7 +53,7 @@ category Basic {
 
     | access
       -> hosts.connect,
-         networks.access
+         toNetworks.access
 
   }
 
@@ -73,8 +73,8 @@ category Basic {
 }
 
 associations {
-  Network [network] 0..1 <-- NetworkToNetworkAccess --> * [networks] Network
-  Network [networks] * <-- NetworkHostAccess --> * [hosts] Host
-  User [users] * <-- HostUsers --> * [hosts] Host
-  Data [data] * <-- HostData --> 0..1 [host] Host
+  Network [fromNetworks] * <-- InterNetworkConnectivity --> * [toNetworks] Network
+  Host [hosts] * <-- HostsInNetworks --> * [networks] Network
+  User [users] * <-- UsersOnHosts --> * [hosts] Host
+  Data [data] * <-- DataOnHosts --> * [hosts] Host
 }
