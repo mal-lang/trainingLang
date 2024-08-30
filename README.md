@@ -25,9 +25,9 @@ Represents a host in a network and can have users and data connected to it.
 ### Associations 
 
 Host is part of three associations:
-- **NetworkHostAccess**: Network (networks) -> Host (hosts)
-- **HostUsers**: User (users) -> Host (hosts)
-- **HostData**: Host (hosts) -> Data (data)
+- **HostsInNetworks**: Host (hosts) <-> Network (networks)
+- **UsersOnHosts**: User (users) <-> Host (hosts)
+- **DataOnHosts**: Data (data) <-> Host (hosts)
 
 Note: List above on format `<Asset type> (<field name>) -> <Asset type> (<field name>)`
 
@@ -36,7 +36,7 @@ Note: List above on format `<Asset type> (<field name>) -> <Asset type> (<field 
 Represents data that can be on a host,
 
 Host is part of one association:
-- **HostData**: Host (hosts) -> Data (data)
+- **DataOnHosts**: Data (data) <-> Host (hosts)
 
 
 ## Network
@@ -44,8 +44,8 @@ Host is part of one association:
 Represents a network that hosts and networks can have access to.
 
 Network is part of two associations:
-- **NetworkHostAccess**: Network (networks) -> Host (hosts)
-- **NetworkToNetworkAccess**:  Network (network) -> Network (networks)
+- **HostsInNetworks**: Host (hosts) <-> Network (networks)
+- **InterNetworkConnectivity**:  Network (fromNetworks) -> Network (toNetworks)
 
 
 ## User
@@ -53,4 +53,4 @@ Network is part of two associations:
 Represents a user that has access to hosts.
 
 Host is part of one association:
-- **HostUsers**: User (users) -> Host (hosts)
+- **UsersOnHosts**: User (users) -> Host (hosts)
