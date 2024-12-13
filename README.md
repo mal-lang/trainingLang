@@ -3,9 +3,9 @@ A simple MAL language used to create simple models and attack graphs for machine
 
 # How to compile trainingLang
 
-1. Download and install malc: `git@github.com:mal-lang/trainingLang.git`
+1. Download and install malc: https://github.com/mal-lang/malc
 
-2. Clone this repository
+2. Clone this repository: `git@github.com:mal-lang/trainingLang.git`
 
 3. Compile trainingLang: `malc trainingLang/src/main/mal/trainingLang.mal`
 
